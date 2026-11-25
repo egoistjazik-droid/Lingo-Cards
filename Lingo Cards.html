@@ -1,0 +1,247 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>Lingo Cards</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,500;9..144,600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#FAF8F3;--card:#fff;--tx:#292929;--mu:#85827C;--lav:#B9A7E8;--sage:#B8CDBA;--but:#F2D58A;--bd:rgba(41,41,41,.08);--sh:0 8px 30px rgba(60,50,30,.07);box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#1d1b18;--card:#28251f;--tx:#f2eee6;--mu:#a29d93;--bd:rgba(255,255,255,.09);--sh:0 8px 30px rgba(0,0,0,.3)}}
+:root[data-theme="dark"]{--bg:#1d1b18;--card:#28251f;--tx:#f2eee6;--mu:#a29d93;--bd:rgba(255,255,255,.09);--sh:0 8px 30px rgba(0,0,0,.3)}
+*{box-sizing:border-box}html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--tx);font:15px/1.5 "Plus Jakarta Sans",system-ui,sans-serif;overflow-x:hidden}
+h1,h2,h3,.serif{font-family:Fraunces,Georgia,serif;font-weight:500;letter-spacing:-.01em;margin:0}
+h1{font-size:clamp(28px,4.5vw,42px);line-height:1.15}h2{font-size:24px}
+button,input,select,textarea{font:inherit;color:inherit}button{cursor:pointer;border:0;background:none;transition:.2s}button:active:not(:disabled){transform:scale(.96)}
+.mu{color:var(--mu)}.side{position:fixed;left:0;top:0;bottom:0;width:220px;padding:28px 14px;border-right:1px solid var(--bd);background:var(--bg);display:flex;flex-direction:column;gap:4px;z-index:5}
+.logo{font-family:Fraunces,Georgia,serif;font-size:22px;padding:0 12px 20px}.logo b{color:var(--lav)}
+.nb{display:flex;gap:12px;align-items:center;padding:11px 12px;border-radius:12px;color:var(--mu);font-weight:600;text-align:left;width:100%}
+.nb:hover{background:var(--card)}.nb.on{background:var(--card);color:var(--tx);box-shadow:var(--sh)}.nb i{font-style:normal;width:20px;text-align:center}
+main{margin-left:220px;padding:44px 48px 60px;max-width:1120px}.view.in{animation:up .45s ease}@keyframes up{from{opacity:0;transform:translateY(12px)}}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:20px}.row{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:24px;box-shadow:var(--sh);padding:22px}
+.mini{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px;margin:28px 0}.mini .card{padding:16px 18px;border-radius:20px}
+.mini b{font:500 28px Fraunces,Georgia,serif;display:block}.mini span{font-size:12px;color:var(--mu);text-transform:uppercase;letter-spacing:.06em}
+.bar{height:8px;border-radius:9px;background:var(--bd);overflow:hidden}.bar i{display:block;height:100%;border-radius:9px;background:var(--lav);transition:width .8s cubic-bezier(.2,.8,.2,1)}
+.lang{position:relative;overflow:hidden;cursor:pointer;transition:.3s;padding:28px}.lang:hover{transform:translateY(-6px);box-shadow:0 18px 40px rgba(60,50,30,.13)}
+.lang.en{background:color-mix(in srgb,var(--lav) 28%,var(--card))}.lang.tr{background:color-mix(in srgb,var(--sage) 38%,var(--card))}
+.lang:after{content:"";position:absolute;right:-34px;top:-34px;width:130px;height:130px;border-radius:50%;background:var(--but);opacity:.4}.lang.tr:after{border-radius:34px;transform:rotate(20deg);background:var(--lav)}
+.lang h2{margin:10px 0 2px}.stats3{display:flex;gap:22px;margin:18px 0 14px}.stats3 b{display:block;font:500 24px Fraunces,Georgia,serif}.stats3 span{font-size:12px;color:var(--mu)}
+.lang.tr .bar i{background:#8fb093}.btn{padding:12px 22px;border-radius:14px;font-weight:600;background:var(--tx);color:var(--bg)}.btn:hover{opacity:.85}
+.btn.s{background:var(--sage);color:#292929}.btn.l{background:var(--lav);color:#292929}.btn.o{background:none;border:1.5px solid var(--lav);color:var(--tx)}.btn.g{background:var(--card);border:1px solid var(--bd);color:var(--tx)}.btn:disabled{opacity:.35;cursor:not-allowed}
+.tabs{display:flex;gap:8px;overflow-x:auto;padding:4px 0;margin:18px 0 8px}.tab{padding:8px 14px;border-radius:99px;background:var(--card);border:1px solid var(--bd);white-space:nowrap;font-weight:600;font-size:13px;color:var(--mu)}
+.tab.on{background:var(--lav);color:#292929;border-color:transparent}.tab em{font-style:normal;opacity:.7;margin-left:4px}
+.scene{perspective:1400px;width:100%;max-width:560px;margin:26px auto 22px;height:min(360px,56vh);min-height:300px;cursor:pointer}
+.c3{position:relative;width:100%;height:100%;transition:transform .8s cubic-bezier(.3,.7,.2,1);transform-style:preserve-3d}.c3.flip{transform:rotateY(180deg)}
+.face{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;border-radius:30px;background:var(--card);border:1px solid var(--bd);box-shadow:0 20px 50px rgba(60,50,30,.12);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:28px;overflow:hidden;gap:8px}
+.face:before{content:"";position:absolute;right:-24px;top:-24px;width:96px;height:96px;border-radius:50%;background:var(--but);opacity:.45}.back{transform:rotateY(180deg);background:color-mix(in srgb,var(--lav) 14%,var(--card))}.back:before{background:var(--sage)}
+.big{font:500 clamp(38px,8vw,60px)/1.1 Fraunces,Georgia,serif}.lab{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--mu)}
+.snd{width:42px;height:42px;border-radius:50%;background:var(--bg);border:1px solid var(--bd);font-size:17px}.snd:hover{background:var(--but)}
+.ex{font-style:italic;max-width:420px}.hint{font-size:12px;color:var(--mu);position:absolute;bottom:18px}
+.acts{display:flex;gap:14px;justify-content:center}.acts .btn{padding:16px 28px;font-size:16px;min-width:180px}
+.kbd{text-align:center;font-size:12px;color:var(--mu);margin-top:18px}kbd{background:var(--card);border:1px solid var(--bd);border-radius:6px;padding:1px 7px;margin:0 2px}
+.top{display:flex;align-items:center;gap:14px;flex-wrap:wrap}.chip{padding:5px 12px;border-radius:99px;background:var(--but);color:#292929;font-size:12px;font-weight:700}
+.pop{animation:pop .5s}@keyframes pop{40%{transform:scale(1.03);box-shadow:0 0 0 12px rgba(184,205,186,.5)}}
+.ctl{display:flex;gap:10px;flex-wrap:wrap;margin:22px 0}.ctl input,.ctl select,.fm input,.fm select,.fm textarea{padding:11px 14px;border-radius:12px;border:1px solid var(--bd);background:var(--card);outline:none;min-width:0}.ctl input{flex:1;min-width:160px}
+.item{display:grid;grid-template-columns:1.1fr 1fr auto;gap:10px 16px;align-items:center;padding:16px 18px;margin-bottom:10px;border-radius:18px}.item .x{grid-column:1/-1;font-size:13px;color:var(--mu)}
+.item select{padding:6px 10px;border-radius:10px;border:1px solid var(--bd);background:var(--bg)}.ib{padding:6px 9px;border-radius:9px}.ib:hover{background:var(--bg)}.tag{font-size:11px;padding:2px 9px;border-radius:99px;background:var(--bd);color:var(--mu);margin-left:6px}
+.wk{display:flex;gap:12px;align-items:flex-end;height:150px}.wk div{flex:1;text-align:center;font-size:12px;color:var(--mu);display:flex;flex-direction:column;justify-content:flex-end;height:100%;gap:6px}.wk i{display:block;background:var(--lav);border-radius:10px 10px 4px 4px;min-height:4px;transition:height .8s}
+.rings{display:flex;gap:26px;flex-wrap:wrap;align-items:center}.ring{position:relative;display:grid;place-items:center}.ring b{position:absolute;font:500 22px Fraunces,Georgia,serif}.ring small{position:absolute;bottom:-20px;color:var(--mu);font-size:12px}
+.modal{position:fixed;inset:0;background:rgba(30,25,20,.45);display:grid;place-items:center;z-index:30;padding:16px;animation:up .25s}.modal .card{width:100%;max-width:480px;max-height:92vh;overflow:auto}.fm{display:grid;gap:10px;margin:14px 0}.fm label{font-size:12px;color:var(--mu)}.fm input,.fm select,.fm textarea{width:100%}
+#toasts{position:fixed;top:calc(18px + env(safe-area-inset-top,0px));left:50%;transform:translateX(-50%);z-index:50;display:grid;gap:8px}.toast{background:var(--tx);color:var(--bg);padding:10px 18px;border-radius:99px;font-weight:600;animation:up .3s;box-shadow:var(--sh)}
+.cf{position:fixed;top:-12px;width:9px;height:14px;z-index:60;border-radius:2px;animation:fall 2.2s ease-in forwards;pointer-events:none}@keyframes fall{to{transform:translate(var(--dx),105vh) rotate(720deg);opacity:.2}}
+.set{display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap;padding:18px 0;border-bottom:1px solid var(--bd)}.set:last-child{border:0}
+.pills{display:flex;gap:8px}.pill{padding:8px 16px;border-radius:99px;border:1px solid var(--bd);background:var(--bg);font-weight:600}.pill.on{background:var(--but);color:#292929;border-color:transparent}
+@media(max-width:800px){.side{top:auto;width:100%;height:auto;flex-direction:row;padding:6px 6px calc(6px + env(safe-area-inset-bottom,0px));border-right:0;border-top:1px solid var(--bd);justify-content:space-around;gap:0}
+.logo{display:none}.nb{flex-direction:column;gap:0;padding:6px 2px;font-size:10px;text-align:center;justify-content:center;width:auto;flex:1}main{margin:0;padding:26px 18px 100px}
+.acts .btn{min-width:0;flex:1;padding:16px 10px}.item{grid-template-columns:1fr auto}.kbd{display:none}}
+</style></head><body><nav class="side" id="nav"></nav><main><div id="v" class="view"></div></main><div id="toasts"></div>
+<script>
+const RAW=`e|f|bread|хлеб|I buy fresh bread every morning.|Я покупаю свежий хлеб каждое утро.
+e|f|water|вода|Please drink more water.|Пожалуйста, пей больше воды.
+e|f|apple|яблоко|She eats an apple after lunch.|Она ест яблоко после обеда.
+e|f|cheese|сыр|This cheese tastes amazing.|Этот сыр потрясающе вкусный.
+e|f|breakfast|завтрак|Breakfast is my favorite meal.|Завтрак — мой любимый приём пищи.
+e|f|hungry|голодный|I’m so hungry right now.|Я сейчас очень голоден.
+e|f|delicious|вкусный|The soup was delicious.|Суп был вкусным.
+e|f|kitchen|кухня|We cook together in the kitchen.|Мы готовим вместе на кухне.
+e|t|ticket|билет|I lost my train ticket.|Я потерял билет на поезд.
+e|t|luggage|багаж|Her luggage is very heavy.|Её багаж очень тяжёлый.
+e|t|airport|аэропорт|We arrive at the airport at six.|Мы прибываем в аэропорт в шесть.
+e|t|journey|путешествие|It was a long journey.|Это было долгое путешествие.
+e|t|map|карта|Can you show me on the map?|Можете показать мне на карте?
+e|t|passport|паспорт|Don’t forget your passport.|Не забудь паспорт.
+e|t|station|станция|The station is nearby.|Станция совсем рядом.
+e|t|hotel|отель|We booked a small hotel.|Мы забронировали небольшой отель.
+e|d|neighbor|сосед|My neighbor is very kind.|Мой сосед очень добрый.
+e|d|weather|погода|The weather is lovely today.|Сегодня прекрасная погода.
+e|d|morning|утро|I wake up early in the morning.|Я просыпаюсь рано утром.
+e|d|tired|уставший|I feel tired after work.|Я чувствую усталость после работы.
+e|d|window|окно|Please open the window.|Пожалуйста, открой окно.
+e|d|key|ключ|Where did I put my key?|Куда я положил ключ?
+e|d|borrow|одолжить|Can I borrow your pen?|Можно одолжить твою ручку?
+e|d|enough|достаточно|That’s enough for today.|На сегодня достаточно.
+e|e|happy|счастливый|I’m happy to see you.|Я рад тебя видеть.
+e|e|worried|обеспокоенный|He is worried about the exam.|Он беспокоится об экзамене.
+e|e|proud|гордый|I’m proud of you.|Я горжусь тобой.
+e|e|lonely|одинокий|She felt lonely in the city.|Она чувствовала себя одинокой в городе.
+e|e|excited|взволнованный|We are excited about the trip.|Мы взволнованы поездкой.
+e|e|grateful|благодарный|I’m grateful for your help.|Я благодарен за твою помощь.
+e|e|nervous|нервничающий|I’m nervous before presentations.|Я нервничаю перед презентациями.
+e|e|wonderful|чудесный|What a wonderful day!|Какой чудесный день!
+e|w|meeting|встреча|The meeting starts at ten.|Встреча начинается в десять.
+e|w|deadline|срок сдачи|The deadline is tomorrow.|Крайний срок — завтра.
+e|w|colleague|коллега|My colleague helped me.|Мой коллега мне помог.
+e|w|salary|зарплата|The salary is fair.|Зарплата справедливая.
+e|w|career|карьера|She is building a career in design.|Она строит карьеру в дизайне.
+e|w|project|проект|We finished the project.|Мы закончили проект.
+e|w|manager|менеджер|The manager approved my idea.|Менеджер одобрил мою идею.
+e|w|schedule|расписание|Check the schedule first.|Сначала проверь расписание.
+e|c|reply|отвечать|Please reply soon.|Пожалуйста, ответь скоро.
+e|c|explain|объяснять|Can you explain this word?|Можешь объяснить это слово?
+e|c|agree|соглашаться|I agree with you.|Я с тобой согласен.
+e|c|message|сообщение|I got your message.|Я получил твоё сообщение.
+e|c|conversation|разговор|We had a nice conversation.|У нас был приятный разговор.
+e|c|whisper|шептать|She whispered a secret.|Она прошептала секрет.
+e|c|ask|спрашивать|Don’t be afraid to ask.|Не бойся спрашивать.
+e|c|suggest|предлагать|I suggest a short break.|Я предлагаю короткий перерыв.
+e|c|language|язык|Language is a bridge.|Язык — это мост.
+e|c|silence|тишина|The silence was comfortable.|Тишина была уютной.
+t|f|ekmek|хлеб|Her sabah taze ekmek alırım.|Каждое утро я покупаю свежий хлеб.
+t|f|su|вода|Biraz su içer misin?|Хочешь воды?
+t|f|elma|яблоко|Elma çok tatlı.|Яблоко очень сладкое.
+t|f|peynir|сыр|Kahvaltıda peynir yerim.|На завтрак я ем сыр.
+t|f|çay|чай|Bir bardak çay lütfen.|Стакан чая, пожалуйста.
+t|f|kahvaltı|завтрак|Kahvaltı hazır.|Завтрак готов.
+t|f|lezzetli|вкусный|Çorba çok lezzetli.|Суп очень вкусный.
+t|f|aç|голодный|Ben çok açım.|Я очень голоден.
+t|f|yemek|еда|Yemek hazır mı?|Еда готова?
+t|t|bilet|билет|Biletimi kaybettim.|Я потерял свой билет.
+t|t|havalimanı|аэропорт|Havalimanına taksiyle gittik.|Мы поехали в аэропорт на такси.
+t|t|otel|отель|Otelimiz denize yakın.|Наш отель рядом с морем.
+t|t|yol|дорога|Yol çok uzun.|Дорога очень длинная.
+t|t|harita|карта|Haritada göster lütfen.|Покажи на карте, пожалуйста.
+t|t|valiz|чемодан|Valizim çok ağır.|Мой чемодан очень тяжёлый.
+t|t|tren|поезд|Tren saat beşte kalkıyor.|Поезд отправляется в пять.
+t|t|şehir|город|Bu şehri çok seviyorum.|Я очень люблю этот город.
+t|d|ev|дом|Evde kalıyorum.|Я остаюсь дома.
+t|d|kapı|дверь|Kapıyı kapat lütfen.|Закрой дверь, пожалуйста.
+t|d|anahtar|ключ|Anahtarım nerede?|Где мой ключ?
+t|d|komşu|сосед|Komşum çok nazik.|Мой сосед очень любезен.
+t|d|hava|погода|Bugün hava güzel.|Сегодня хорошая погода.
+t|d|sabah|утро|Sabah erken kalkarım.|Я встаю рано утром.
+t|d|yorgun|уставший|İşten sonra yorgunum.|После работы я устал.
+t|d|zaman|время|Zamanım yok.|У меня нет времени.
+t|e|mutlu|счастливый|Seni gördüğüme mutluyum.|Я рад тебя видеть.
+t|e|üzgün|грустный|Bugün biraz üzgünüm.|Сегодня мне немного грустно.
+t|e|heyecanlı|взволнованный|Yarın için heyecanlıyım.|Я взволнован из-за завтрашнего дня.
+t|e|gurur|гордость|Seninle gurur duyuyorum.|Я горжусь тобой.
+t|e|korku|страх|Korku geçer.|Страх проходит.
+t|e|sakin|спокойный|Sakin ol, nefes al.|Успокойся, дыши.
+t|e|özlemek|скучать|Seni çok özledim.|Я очень по тебе скучаю.
+t|e|sevgi|любовь|Sevgi her şeyi değiştirir.|Любовь всё меняет.
+t|e|güzel|красивый|Ne güzel bir gün!|Какой прекрасный день!
+t|w|toplantı|встреча|Toplantı saat onda.|Встреча в десять.
+t|w|iş|работа|İşim çok güzel.|Моя работа прекрасна.
+t|w|maaş|зарплата|Maaşım zamanında yattı.|Зарплату перевели вовремя.
+t|w|patron|начальник|Patronum bugün yok.|Начальника сегодня нет.
+t|w|proje|проект|Projeyi bitirdik.|Мы закончили проект.
+t|w|görev|задача|Bu görev kolay.|Эта задача лёгкая.
+t|w|çalışmak|работать|Bugün çok çalıştım.|Сегодня я много работал.
+t|c|soru|вопрос|Bir sorum var.|У меня есть вопрос.
+t|c|cevap|ответ|Cevabı biliyorum.|Я знаю ответ.
+t|c|konuşmak|говорить|Türkçe konuşmak istiyorum.|Я хочу говорить по-турецки.
+t|c|anlamak|понимать|Seni anlıyorum.|Я тебя понимаю.
+t|c|mesaj|сообщение|Mesajını aldım.|Я получил твоё сообщение.
+t|c|lütfen|пожалуйста|Lütfen tekrar söyle.|Пожалуйста, повтори.
+t|c|teşekkürler|спасибо|Yardımın için teşekkürler.|Спасибо за помощь.
+t|c|merhaba|привет|Merhaba, nasılsın?|Привет, как дела?
+t|c|arkadaş|друг|En iyi arkadaşım burada.|Мой лучший друг здесь.`;
+const CATS={f:"Food",t:"Travel",d:"Daily life",e:"Emotions",w:"Work",c:"Communication"},LN={e:{n:"English",f:"🇬🇧",t:"English Vocabulary",v:"en-US"},t:{n:"Turkish",f:"🇹🇷",t:"Turkish Vocabulary",v:"tr-TR"}};
+const ST={new:"New",learning:"Learning",learned:"Learned"},TABS=[["all","All Words"],["new","New"],["learning","Learning"],["learned","Learned"],["review","Review"]];
+const MSG=["You’re doing better than you think.","Five words closer to fluency.","Small steps, big progress.","Consistency is your superpower.","Look at you, learning another language!"];
+const INT=[1,3,7,14,30],DAY=864e5,K="lingocards.v1";
+const day=(d=new Date())=>d.toLocaleDateString("sv"),esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+let mem=null;const store={get(){try{return localStorage.getItem(K)}catch(e){return mem}},set(v){try{localStorage.setItem(K,v)}catch(e){mem=v}}};
+function init(){return{words:RAW.split("\n").map((r,i)=>{const[l,c,w,ru,ex,xr]=r.split("|");return{id:"s"+i,l,cat:c,w,ru,ex,xr,ph:"",st:"new",box:0,due:0}}),xp:0,streak:0,last:"",goal:10,log:{},snd:true,n:0}}
+let S;try{S=JSON.parse(store.get())}catch(e){}if(!S||!S.words)S=init();
+const save=()=>store.set(JSON.stringify(S)),by=l=>S.words.filter(w=>w.l===l),gid=id=>S.words.find(w=>w.id===id);
+const isRev=w=>w.st!=="new"&&w.due<=Date.now();
+const filt=(l,t)=>by(l).filter(w=>t==="all"||(t==="review"?isRev(w):w.st===t));
+let view="home",ses=null,filters={q:"",l:"",s:"",c:""};
+const NAV=[["home","Home","⌂"],["learn","Learn","❖"],["vocab","My Vocabulary","☰"],["review","Review","↻"],["stats","Statistics","◔"],["settings","Settings","⚙"]];
+function toast(m){const t=document.createElement("div");t.className="toast";t.textContent=m;document.getElementById("toasts").appendChild(t);setTimeout(()=>t.remove(),2600)}
+function confetti(n=60){const c=["#B9A7E8","#B8CDBA","#F2D58A","#e9b9c4"];for(let i=0;i<n;i++){const e=document.createElement("div");e.className="cf";e.style.cssText=`left:${Math.random()*100}vw;background:${c[i%4]};--dx:${Math.random()*160-80}px;animation-delay:${Math.random()*.5}s`;document.body.appendChild(e);setTimeout(()=>e.remove(),3000)}}
+function speak(t,l){if(!S.snd)return toast("Sound is off in Settings");if(!window.speechSynthesis)return toast("Speech isn’t supported here");speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(t);u.lang=LN[l].v;u.rate=.9;const v=speechSynthesis.getVoices().find(v=>v.lang.replace("_","-").startsWith(l==="e"?"en":"tr"));if(v)u.voice=v;speechSynthesis.speak(u)}
+function go(v,a=true){view=v;if(v!=="learn")ses=null;render(a)}
+function startS(l,t){const list=filt(l,t);if(!list.length){toast("No words here yet");return}
+const w={learning:3,learned:.5,new:1.5};const q=list.map(x=>({id:x.id,k:(t==="review"?(x.st==="learning"?3:2):isRev(x)?2:w[x.st])+Math.random()*1.4})).sort((a,b)=>b.k-a.k).slice(0,25).map(x=>x.id);
+ses={l,t,q,n:q.length,fl:false};view="learn";render(true)}
+const left=()=>new Set(ses.q).size;
+function ans(known){const w=gid(ses.q[0]);if(!ses.fl)return;const now=Date.now();
+if(known){w.st="learned";w.learnedOn=day();w.due=now+INT[Math.min(w.box,4)]*DAY;w.box=Math.min(w.box+1,5);S.xp+=10;ses.q=ses.q.filter(i=>i!==w.id)}
+else{w.st="learning";w.box=0;w.due=now;S.xp+=4;const rest=ses.q.slice(1).filter(i=>i!==w.id);rest.splice(Math.min(4,rest.length),0,w.id);ses.q=rest}
+const d=day(),y=day(new Date(now-DAY));if(S.last!==d){S.streak=S.last===y?S.streak+1:1;S.last=d}
+S.log[d]=(S.log[d]||0)+1;if(S.log[d]===S.goal){toast("Daily goal complete! 🎉");confetti(50)}
+save();const sc=document.querySelector(".scene");if(sc){sc.classList.add("pop");toast(known?"Nice — +10 XP ✓":"We’ll bring it back soon ↻")}
+ses.fl=false;setTimeout(()=>render(false),known?380:300)}
+const streak=()=>S.last===day()||S.last===day(new Date(Date.now()-DAY))?S.streak:0,today=()=>S.log[day()]||0;
+const nA=(n,s="")=>`<span data-n="${n}" data-s="${s}">${n}${s}</span>`;
+function stat(l){const a=by(l);return{t:a.length,k:a.filter(w=>w.st==="learned").length,r:a.filter(isRev).length}}
+function langCards(m){return`<div class="grid2">`+["e","t"].map(l=>{const s=stat(l),p=s.t?Math.round(s.k/s.t*100):0;return`<div class="card lang ${l==="e"?"en":"tr"}" onclick="pick('${l}','${m}')"><div style="font-size:30px">${LN[l].f}</div><h2>${LN[l].t}</h2><div class="mu">${LN[l].n} · ${p}% learned</div>
+<div class="stats3"><div><b>${nA(s.t)}</b><span>Total words</span></div><div><b>${nA(s.k)}</b><span>Learned</span></div><div><b>${nA(s.r)}</b><span>To review</span></div></div>
+<div class="bar"><i style="width:${p}%"></i></div><button class="btn" style="margin-top:18px">${m==="review"?"Start Review":"Start Learning"}</button></div>`}).join("")+`</div>`}
+function pick(l,m){if(m==="review"&&!filt(l,"review").length)return toast("Nothing to review yet — learn some words first");startS(l,m==="review"?"review":"all")}
+function home(){const g=S.goal,t=today(),p=Math.min(100,Math.round(t/g*100)),lt=S.words.filter(w=>w.learnedOn===day()).length;
+return`<h1>A little progress every day.</h1><p class="mu serif" style="font-size:19px;margin:6px 0 0;font-style:italic">Learn new words, one card at a time.</p>
+<div class="mini"><div class="card"><b>🔥 ${nA(streak())}</b><span>Day streak</span></div><div class="card"><b>${nA(t)} / ${g}</b><span>Today’s goal</span></div><div class="card"><b>${nA(lt)}</b><span>Learned today</span></div><div class="card"><b>${nA(S.xp)}</b><span>XP</span><div class="bar" style="margin-top:8px"><i style="width:${p}%;background:var(--but)"></i></div></div></div>
+<p class="mu" style="margin:-8px 0 22px">${t>=g?"Goal reached — lovely work. ":""}${MSG[S.n%5]}</p>${langCards("learn")}`}
+function learn(){if(!ses)return`<h1>Choose a language</h1><p class="mu">Pick a deck to start a session.</p><div style="height:22px"></div>`+langCards("learn");
+const l=ses.l,q=ses.q;
+const head=`<div class="top"><button class="btn g" onclick="ses=null;go('home')">← Back</button><h2>${LN[l].f} ${LN[l].n}</h2><span class="chip">${TABS.find(x=>x[0]===ses.t)[1]}</span><span class="mu" style="margin-left:auto">${ses.n-left()} / ${ses.n} done</span></div>
+<div class="bar" style="margin-top:16px"><i style="width:${Math.round((ses.n-left())/ses.n*100)}%"></i></div>
+<div class="tabs">${TABS.map(([k,n])=>`<button class="tab ${k===ses.t?"on":""}" onclick="startS('${l}','${k}')">${n}<em>${filt(l,k).length}</em></button>`).join("")}</div>`;
+if(!q.length){return head+`<div class="card" style="text-align:center;padding:48px 20px;max-width:560px;margin:26px auto"><div style="font-size:42px">🌿</div><h2 style="margin:10px 0">Session complete</h2><p class="mu">${MSG[S.n++%5]}</p><div class="row" style="justify-content:center;margin-top:18px"><button class="btn l" onclick="startS('${l}','${ses.t}')">Shuffle again</button><button class="btn g" onclick="ses=null;go('home')">Home</button></div></div>`}
+const w=gid(q[0]);
+return head+`<div class="scene" onclick="flip()"><div class="c3 ${ses.fl?"flip":""}" id="c3"><div class="face"><span class="lab">${LN[l].n}${w.cat?" · "+CATS[w.cat]:""}</span><div class="big">${esc(w.w)}</div>${w.ph?`<div class="mu">/${esc(w.ph)}/</div>`:""}<button class="snd" onclick="event.stopPropagation();speak(gid('${w.id}').w,'${l}')" aria-label="Play">🔊</button><span class="hint">Click the card to reveal the translation</span></div>
+<div class="face back"><span class="lab">Russian</span><div class="big">${esc(w.ru)}</div><div class="ex" style="margin-top:10px">${esc(w.ex)}</div><div class="mu" style="font-size:13px">${esc(w.xr)}</div><button class="snd" onclick="event.stopPropagation();speak(gid('${w.id}').ex||gid('${w.id}').w,'${l}')" aria-label="Play">🔊</button></div></div></div>
+<div class="acts"><button class="btn s" id="bk" onclick="ans(true)" ${ses.fl?"":"disabled"}>I know this ✓</button><button class="btn o" id="bp" onclick="ans(false)" ${ses.fl?"":"disabled"}>Need to practice ↻</button></div>
+<div class="kbd"><kbd>Space</kbd> flip · <kbd>→</kbd> I know this · <kbd>←</kbd> Need to practice</div>`}
+function flip(){if(!ses||!ses.q.length)return;ses.fl=!ses.fl;document.getElementById("c3").classList.toggle("flip",ses.fl);if(ses.fl){bk.disabled=bp.disabled=false}}
+function vocab(){return`<div class="row" style="justify-content:space-between"><h1>My Vocabulary</h1><button class="btn l" onclick="edit()">+ Add word</button></div>
+<div class="ctl"><input id="fq" placeholder="Search words or translations…" value="${esc(filters.q)}" oninput="filters.q=this.value;vlist()"><select onchange="filters.l=this.value;vlist()"><option value="">Both languages</option><option value="e" ${filters.l==="e"?"selected":""}>English</option><option value="t" ${filters.l==="t"?"selected":""}>Turkish</option></select>
+<select onchange="filters.s=this.value;vlist()"><option value="">Any status</option>${Object.entries(ST).map(([k,v])=>`<option value="${k}" ${filters.s===k?"selected":""}>${v}</option>`).join("")}</select>
+<select onchange="filters.c=this.value;vlist()"><option value="">All categories</option>${Object.entries(CATS).map(([k,v])=>`<option value="${k}" ${filters.c===k?"selected":""}>${v}</option>`).join("")}</select></div><div id="vl"></div>`}
+function vlist(){const q=filters.q.toLowerCase(),a=S.words.filter(w=>(!filters.l||w.l===filters.l)&&(!filters.s||w.st===filters.s)&&(!filters.c||w.cat===filters.c)&&(!q||(w.w+w.ru).toLowerCase().includes(q)));
+document.getElementById("vl").innerHTML=`<p class="mu">${a.length} word${a.length===1?"":"s"}</p>`+(a.slice(0,150).map(w=>`<div class="card item"><div><b style="font-size:17px">${LN[w.l].f} ${esc(w.w)}</b>${w.cat?`<span class="tag">${CATS[w.cat]||esc(w.cat)}</span>`:""}${w.ph?`<div class="mu" style="font-size:12px">/${esc(w.ph)}/</div>`:""}</div><div>${esc(w.ru)}</div>
+<div class="row" style="gap:4px;justify-content:flex-end"><select onchange="setSt('${w.id}',this.value)">${Object.entries(ST).map(([k,v])=>`<option value="${k}" ${w.st===k?"selected":""}>${v}</option>`).join("")}</select><button class="ib" onclick="speak(gid('${w.id}').w,'${w.l}')">🔊</button><button class="ib" onclick="edit('${w.id}')">✎</button><button class="ib" onclick="del('${w.id}')">🗑</button></div>
+${w.ex?`<div class="x"><i>${esc(w.ex)}</i> — ${esc(w.xr)}</div>`:""}</div>`).join("")||`<div class="card mu" style="text-align:center">No words match.</div>`)+(a.length>150?`<p class="mu">Showing first 150 — refine your search.</p>`:"")}
+function setSt(id,s){const w=gid(id);w.st=s;w.box=0;w.due=s==="learned"?Date.now()+DAY:0;if(s==="learned")w.learnedOn=day();save();toast("Status updated")}
+function del(id){if(!confirm("Delete this word?"))return;S.words=S.words.filter(w=>w.id!==id);save();vlist();toast("Word deleted")}
+function edit(id){const w=id?gid(id):{l:"e",st:"new",cat:""},m=document.createElement("div");m.className="modal";m.onclick=e=>{if(e.target===m)m.remove()};
+const f=(k,lb,t="input")=>`<label>${lb}</label><${t} id="f_${k}" ${t==="input"?`value="${esc(w[k])}"`:""}>${t==="textarea"?esc(w[k]):""}${t==="textarea"?"</textarea>":""}`;
+m.innerHTML=`<div class="card"><h2>${id?"Edit word":"Add a word"}</h2><div class="fm"><label>Language</label><select id="f_l"><option value="e" ${w.l==="e"?"selected":""}>English</option><option value="t" ${w.l==="t"?"selected":""}>Turkish</option></select>
+${f("w","Word")}${f("ru","Russian translation")}${f("ph","Pronunciation (optional)")}${f("ex","Example sentence")}${f("xr","Example in Russian")}
+<label>Category</label><select id="f_cat"><option value="">None</option>${Object.entries(CATS).map(([k,v])=>`<option value="${k}" ${w.cat===k?"selected":""}>${v}</option>`).join("")}</select>
+<label>Status</label><select id="f_st">${Object.entries(ST).map(([k,v])=>`<option value="${k}" ${w.st===k?"selected":""}>${v}</option>`).join("")}</select></div>
+<div class="row"><button class="btn l" id="sv">Save</button><button class="btn g" onclick="this.closest('.modal').remove()">Cancel</button></div></div>`;document.body.appendChild(m);
+m.querySelector("#sv").onclick=()=>{const g=k=>m.querySelector("#f_"+k).value.trim(),o={l:g("l"),w:g("w"),ru:g("ru"),ph:g("ph"),ex:g("ex"),xr:g("xr"),cat:g("cat"),st:g("st")};
+if(!o.w||!o.ru)return toast("Word and translation are required");
+if(id){if(o.st!==w.st){w.box=0;w.due=0}Object.assign(w,o)}else S.words.push({id:"u"+Date.now(),box:0,due:0,...o});
+save();m.remove();vlist();toast(id?"Word updated":"Word added")}}
+function ring(p,c,sz,lb){const r=sz/2-8,C=2*Math.PI*r;return`<div class="ring" style="width:${sz}px;height:${sz}px"><svg width="${sz}" height="${sz}" style="transform:rotate(-90deg)"><circle cx="${sz/2}" cy="${sz/2}" r="${r}" fill="none" stroke="var(--bd)" stroke-width="8"/><circle cx="${sz/2}" cy="${sz/2}" r="${r}" fill="none" stroke="${c}" stroke-width="8" stroke-linecap="round" stroke-dasharray="${C}" stroke-dashoffset="${C*(1-p/100)}" style="transition:stroke-dashoffset 1s"/></svg><b>${p}%</b>${lb?`<small>${lb}</small>`:""}</div>`}
+function stats(){const a=S.words,T=a.length,k=a.filter(w=>w.st==="learned").length,lg=a.filter(w=>w.st==="learning").length,nw=T-k-lg,pc=T?Math.round(k/T*100):0;
+const wk=[...Array(7)].map((_,i)=>{const d=new Date(Date.now()-(6-i)*DAY);return{d:d.toLocaleDateString("en",{weekday:"short"}),n:S.log[day(d)]||0}}),mx=Math.max(5,...wk.map(x=>x.n)),pe=l=>{const s=stat(l);return s.t?Math.round(s.k/s.t*100):0};
+return`<h1>Your progress</h1><p class="mu">Every card counts.</p><div class="mini"><div class="card"><b>${nA(T)}</b><span>Total vocabulary</span></div><div class="card"><b>${nA(k)}</b><span>Words learned</span></div><div class="card"><b>${nA(lg)}</b><span>Practicing</span></div><div class="card"><b>${nA(nw)}</b><span>Remaining</span></div></div>
+<div class="grid2"><div class="card"><h3>Learning</h3><div class="rings" style="margin:20px 0 28px">${ring(pc,"var(--lav)",120)}${ring(pe("e"),"var(--lav)",80,"English")}${ring(pe("t"),"#8fb093",80,"Turkish")}</div></div>
+<div class="card"><h3>This week</h3><div class="wk" style="margin-top:20px">${wk.map(x=>`<div><i style="height:${x.n/mx*100}%"></i>${x.d}</div>`).join("")}</div></div></div>
+<div class="card" style="margin-top:20px"><b>⭐ ${S.xp} XP</b> · 🔥 ${streak()}-day streak · ${wk.reduce((s,x)=>s+x.n,0)} cards this week</div>`}
+function settings(){return`<h1>Settings</h1><div class="card" style="margin-top:24px"><div class="set"><div><b>Daily goal</b><div class="mu">Cards to study each day</div></div><div class="pills">${[5,10,15,20].map(n=>`<button class="pill ${S.goal===n?"on":""}" onclick="S.goal=${n};save();render(false)">${n}</button>`).join("")}</div></div>
+<div class="set"><div><b>Pronunciation</b><div class="mu">Browser text-to-speech</div></div><button class="pill ${S.snd?"on":""}" onclick="S.snd=!S.snd;save();render(false)">${S.snd?"On":"Off"}</button></div>
+<div class="set"><div><b>Reset progress</b><div class="mu">Restores the starter vocabulary and clears XP, streak and custom words</div></div><button class="btn g" onclick="if(confirm('Reset everything?')){S=init();save();ses=null;go('home');toast('Progress reset')}">Reset</button></div></div>`}
+function render(a){document.getElementById("nav").innerHTML=`<div class="logo">Lingo <b>Cards</b></div>`+NAV.map(([k,n,i])=>`<button class="nb ${k===view?"on":""}" onclick="go('${k}')"><i>${i}</i>${n}</button>`).join("");
+const v=document.getElementById("v");v.className="view"+(a?" in":"");
+v.innerHTML={home,learn,vocab,review:()=>`<h1>Review</h1><p class="mu">Words due for repetition come first.</p><div style="height:22px"></div>`+langCards("review"),stats,settings}[view]();
+if(view==="vocab")vlist();
+v.querySelectorAll("[data-n]").forEach(el=>{const t=+el.dataset.n;if(!a||!t)return;const s=performance.now();(function f(n){const p=Math.min(1,(n-s)/800);el.textContent=Math.round(t*(1-Math.pow(1-p,3)))+el.dataset.s;if(p<1)requestAnimationFrame(f)})(s)});
+if(a)window.scrollTo(0,0);if(view==="learn"&&ses&&!ses.q.length&&!ses.cf&&ses.n){ses.cf=1;confetti(80)}}
+document.addEventListener("keydown",e=>{if(view!=="learn"||!ses||document.querySelector(".modal")||/INPUT|SELECT|TEXTAREA/.test(e.target.tagName))return;
+if(e.key===" "||e.key==="Enter"){e.preventDefault();flip()}else if(e.key==="ArrowRight"&&ses.fl)ans(true);else if(e.key==="ArrowLeft"&&ses.fl)ans(false)});
+if(window.speechSynthesis)speechSynthesis.getVoices();render(true);
+</script></body></html>
